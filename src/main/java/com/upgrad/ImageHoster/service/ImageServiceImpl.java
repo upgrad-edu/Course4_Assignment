@@ -21,16 +21,16 @@ public class ImageServiceImpl implements ImageService {
     public List<Image> getByTag(String tagName) { return imageManager.getImagesByTag(tagName); }
 
     @Override
-    public Image getByTitle(String title) {
-       return imageManager.getImageByTitle(title);
+    public Image getById(Integer id) {
+       return imageManager.getImageById(id);
     }
 
     @Override
-    public Image getByTitleWithJoin(String title) { return imageManager.getImageByTitleWithJoins(title); }
+    public Image getByIdWithJoin(Integer id) { return imageManager.getImageByIdWithJoins(id); }
 
     @Override
-    public void deleteByTitle(Image image) {
-        imageManager.deleteImage(image.getTitle());
+    public void deleteById(Image image) {
+        imageManager.deleteImage(image.getId());
     }
 
     @Override

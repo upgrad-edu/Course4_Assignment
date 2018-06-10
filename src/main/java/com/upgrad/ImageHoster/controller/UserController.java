@@ -58,7 +58,18 @@ public class UserController {
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public String signUpUser(@RequestParam("username") String username,
                              @RequestParam("password") String password,
+                               Model model,
                                HttpSession session) {
+
+        //We'll first check if the user with the provided username exists or not
+        User userExists = userService.getByName(username);
+
+        if(userExists != null){
+            String error = "username has been registered";
+            model.addAttribute("error", error);
+            return "users/signup";
+        }
+
         // We'll first assign a default photo to the user
         ProfilePhoto photo = new ProfilePhoto();
         profilePhotoService.save(photo);
