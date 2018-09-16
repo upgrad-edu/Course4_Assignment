@@ -58,7 +58,8 @@ public class UserController {
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public String signUpUser(@RequestParam("username") String username,
                              @RequestParam("password") String password,
-                               HttpSession session) {
+                             Model model,
+                             HttpSession session) {
         // We'll first assign a default photo to the user
         ProfilePhoto photo = new ProfilePhoto();
         profilePhotoService.save(photo);
@@ -72,8 +73,12 @@ public class UserController {
 
         // We want to create an "currUser" attribute in the HTTP session, and store the user
         // as the attribute's value to signify that the user has logged in
-        session.setAttribute("currUser", user);
+        if(!userService.register(user)) {
+            String error = "username already exists!";
+            model.addAttribute("error", error);
+        }
 
+        session.setAttribute("currUser", user);
         return "redirect:/";
     }
 
