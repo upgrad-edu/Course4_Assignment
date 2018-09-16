@@ -57,8 +57,9 @@ public class UserController {
      */
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public String signUpUser(@RequestParam("username") String username,
-                             @RequestParam("password") String password, Model model,
-                               HttpSession session) {
+                             @RequestParam("password") String password,
+                             Model model,
+                             HttpSession session) {
         // We'll first assign a default photo to the user
         ProfilePhoto photo = new ProfilePhoto();
         profilePhotoService.save(photo);

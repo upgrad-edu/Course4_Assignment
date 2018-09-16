@@ -21,8 +21,8 @@ public class ImageServiceImpl implements ImageService {
     public List<Image> getByTag(String tagName) { return imageManager.getImagesByTag(tagName); }
 
     @Override
-    public Image getByTitle(String title) {
-       return imageManager.getImageByTitle(title);
+    public Image getById(int id) {
+       return imageManager.getImageById(id);
     }
 
     @Override

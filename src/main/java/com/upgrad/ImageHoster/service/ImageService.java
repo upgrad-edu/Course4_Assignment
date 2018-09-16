@@ -7,7 +7,7 @@ import java.util.List;
 public interface ImageService{
     List<Image> getAll();
     List<Image> getByTag(String tagName);
-    Image getByTitle(String title);
+    Image getById(int id);
     Image getByTitleWithJoin(String title);
     void deleteByTitle(Image image);
     void save(Image image);

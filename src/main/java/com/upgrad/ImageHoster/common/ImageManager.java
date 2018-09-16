@@ -25,18 +25,18 @@ public class ImageManager extends SessionManager {
     }
 
     /**
-     * This method retrieves an image by its title
+     * This method retrieves an image by its id
      *
-     * @param title the title of the image that we are looking for
+     * @param id the id of the image that we are looking for
      *
      * @return an Image object that we retrieved by its title
      */
-    public Image getImageByTitle(final String title) {
+    public Image getImageById(final int id) {
         Session session = openSession();
 
         try {
             Image image = (Image)session.createCriteria(Image.class)
-                    .add(Restrictions.eq("title", title))
+                    .add(Restrictions.eq("id", id))
                     .uniqueResult(); // retrieves only 1 image
             commitSession(session);
 
