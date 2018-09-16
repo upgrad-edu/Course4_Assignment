@@ -19,10 +19,14 @@ public class UserManager extends SessionManager {
      * @return the User object that we saved
      */
     public User registerUser(final User user) {
-        Session session = openSession();
-        session.save(user);
-        commitSession(session);
-        return user;
+        if(getUserByName(user.getUsername()) == null) {
+
+            Session session = openSession();
+            session.save(user);
+            commitSession(session);
+            return user;
+        }
+        return null;
     }
 
     /**
